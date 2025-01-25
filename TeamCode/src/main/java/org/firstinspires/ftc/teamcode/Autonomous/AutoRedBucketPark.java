@@ -26,12 +26,12 @@ public class AutoRedBucketPark extends LinearOpMode
 
 
         waitForStart();
-        driver.forward_tiles(-1.35);
+        driver.forward_tiles(-1.36);
         sleep(1000);
         arm.setPosition(0.5);
         sleep(500);
         slide.setPower(1.0);
-        sleep(1900);
+        sleep(2100);
         slide.setPower(0);
 //        sleep(1000);
         scoop.setPosition(0.4);
@@ -44,7 +44,7 @@ public class AutoRedBucketPark extends LinearOpMode
         slide.setPower(0);
         sleep(500);
         arm.setPosition(1.0);
-        sleep(500);
+        sleep(1000);
         driver.forward_tiles(4);
 
     }

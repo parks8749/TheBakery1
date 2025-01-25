@@ -124,7 +124,7 @@ public class DriveTrain
     protected double calculateSpeedModifier(@NonNull Gamepad gamepad, double slow, double normal, double fast)
     {
         double speedModifier = normal;
-        if (gamepad.a)
+        if (gamepad.right_bumper)
         {
             speedModifier = fast;
         }
