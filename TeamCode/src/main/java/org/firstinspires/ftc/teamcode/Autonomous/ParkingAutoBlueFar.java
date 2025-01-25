@@ -16,6 +16,6 @@ public class ParkingAutoBlueFar extends LinearOpMode
 
         waitForStart();
 //        scorer.load();
-        driver.forward_tiles(4.0);
+        driver.forward_tiles(-4.0);
     }
 }

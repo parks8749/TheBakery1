@@ -16,7 +16,7 @@ public class ParkingAutoBlueClose extends LinearOpMode
 
         waitForStart();
 //        scorer.load();
-        driver.forward_tiles(2.0);
+        driver.forward_tiles(-2.0);
 //        driver.parkEasyBlue();
     }
 }

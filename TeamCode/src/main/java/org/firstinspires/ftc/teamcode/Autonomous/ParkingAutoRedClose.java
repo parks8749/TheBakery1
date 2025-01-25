@@ -17,6 +17,6 @@ public class ParkingAutoRedClose extends LinearOpMode
         waitForStart();
 
 //        driver.parkEasyRed();
-        driver.forward_tiles(2.0);
+        driver.forward_tiles(-2.0);
     }
 }

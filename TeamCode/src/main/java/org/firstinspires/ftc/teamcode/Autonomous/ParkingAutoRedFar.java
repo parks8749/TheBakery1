@@ -16,7 +16,7 @@ public class ParkingAutoRedFar extends LinearOpMode
 
         waitForStart();
 //        scorer.load();
-        driver.forward_tiles(4.0);
+        driver.forward_tiles(-4.0);
 //        driver.forward_tiles(0.5);
 //        driver.turn_90_clockwise(1);
 //        driver.forward_tiles(2);
