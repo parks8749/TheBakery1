@@ -30,7 +30,7 @@ public class AutoBlueBucket extends LinearOpMode
         arm.setPosition(0.5);
         sleep(500);
         slide.setPower(1.0);
-        sleep(2200);
+        sleep(2400);
         slide.setPower(0);
 //        sleep(1000);
         scoop.setPosition(0.4);
@@ -39,7 +39,7 @@ public class AutoBlueBucket extends LinearOpMode
         sleep(1000);
         driver.forward_tiles(0.1);
         slide.setPower(-1.0);
-        sleep(1900);
+        sleep(2100);
         slide.setPower(0);
         sleep(500);
         arm.setPosition(1.0);
