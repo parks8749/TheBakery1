@@ -42,31 +42,20 @@ public class CenterStage2023 extends LinearOpMode {
         turn = hardwareMap.get(Servo.class, "turn");
         slide = hardwareMap.get(DcMotor.class, "slide");
         claw = hardwareMap.get(Servo.class, "claw");
-
-//        // Set motor direction and zero power behavior
-//        slide.setDirection(DcMotor.Direction.FORWARD);
-//        slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//
-//        // Reset encoder position and set to run using encoder
-//        slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         slide = hardwareMap.get(DcMotor.class, "slide");
 
-        // Set the motor to run without encoders
+
+// For using encoders for linear slides:
+//        slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        slide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        slide.setDirection(DcMotor.Direction.FORWARD);
+
+
         slide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         telemetry.addData("Status", "Initialized");
         driveTrain = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
-//
-//        LinearSlides linearSlides = new LinearSlides(hardwareMap, "Slides", linearSlidesPosition);
-//
-//        Intake intake = new Intake(hardwareMap, "wrist", "claw1", "claw2");
-//
-////        HookMechanism hookMechanism = new HookMechanism(hardwareMap, "hanging", "hook");
-//
-//        Launcher launcher = new Launcher(hardwareMap, "launcher");
-//
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -143,15 +132,17 @@ public class CenterStage2023 extends LinearOpMode {
 
 
 // SLIDE CODE(TRIGGERS)
-            if (gamepad2.right_trigger > 0.1) {  // Move slides up when right trigger is pressed
+            int slidePosition = slide.getCurrentPosition();
+            if (gamepad2.right_trigger > 0.1) {
                 slide.setPower(gamepad2.right_trigger);
-            } else if (gamepad2.left_trigger > 0.1) {  // Move slides down when left trigger is pressed
+            } else if (gamepad2.left_trigger > 0.1) {
                 slide.setPower(-gamepad2.left_trigger);
             } else {
                 slide.setPower(0);
             }
+
+            telemetry.addData("Slide Position", slidePosition);
             telemetry.addData("Slide Motor Power", slide.getPower());
-            telemetry.update();
 
 //            slide.setPower(power);
 //
