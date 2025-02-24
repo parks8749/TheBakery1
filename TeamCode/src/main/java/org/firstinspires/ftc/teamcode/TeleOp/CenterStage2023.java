@@ -24,7 +24,7 @@ public class CenterStage2023 extends LinearOpMode {
     private DcMotor slide;
     private Servo claw;
     private final double CLAW_OPEN_POSITION = 0.0;  // May adjust
-    private final double CLAW_CLOSED_POSITION = 0.4; // May adjust
+    private final double CLAW_CLOSED_POSITION = 0.6; // May adjust
 //    private boolean isClawOpen = true;
 //    private LinearSlides linearSlides;
 
@@ -134,9 +134,9 @@ public class CenterStage2023 extends LinearOpMode {
 // SLIDE CODE(TRIGGERS)
             int slidePosition = slide.getCurrentPosition();
             if (gamepad2.right_trigger > 0.1) {
-                slide.setPower(gamepad2.right_trigger);
+                slide.setPower(-gamepad2.right_trigger);
             } else if (gamepad2.left_trigger > 0.1) {
-                slide.setPower(-gamepad2.left_trigger);
+                slide.setPower(gamepad2.left_trigger);
             } else {
                 slide.setPower(0);
             }

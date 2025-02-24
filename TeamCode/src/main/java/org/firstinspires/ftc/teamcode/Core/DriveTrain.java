@@ -206,8 +206,7 @@ public class DriveTrain
         setPowerFR(-speed);
         setPowerFL(-speed);
         setPowerBL(speed);
-        setPowerBR(
-                speed);
+        setPowerBR(speed);
     }
 
     /**
