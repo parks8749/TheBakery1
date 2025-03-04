@@ -20,7 +20,7 @@ public class Driver extends DriveTrain
     /** Diameter of the wheels in millimeters */
     private final double wheel_diameter = 96; // mm
 
-    private final int ticks_per_90_turn = 870;
+    private final int ticks_per_90_turn = 935; // normal was 870
 
     /** linear distance covered by one rotation of the wheel*/
     private final double distance_per_motor_rotation = wheel_diameter * Math.PI;
@@ -46,7 +46,7 @@ public class Driver extends DriveTrain
     {
         checkIsBusy();
         super.Stop();
-        waitMilliseconds(500);
+        waitMilliseconds(300); // 500
     }
 
     /**
@@ -100,7 +100,7 @@ public class Driver extends DriveTrain
     public void forward_tiles(double tiles)
     {
 
-        forward_tiles(tiles, 0.3);
+        forward_tiles(tiles, 0.5); // normal was 0.3
     }
 
     private void strafe_ticks(int ticks, double power) {
@@ -159,8 +159,8 @@ public class Driver extends DriveTrain
 
     public void turn_90_intervals(int times)
     {
-        turn_ticks(ticks_per_90_turn * times, 0.2);
-    }
+        turn_ticks(ticks_per_90_turn * times, 0.5);
+    } // normal 0.2
 
     public void turn_90_clockwise(int times)
     {

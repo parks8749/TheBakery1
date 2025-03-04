@@ -25,7 +25,7 @@ public class AutoSpecimenPark extends LinearOpMode
         arm.setDirection(Servo.Direction.FORWARD);
 
         waitForStart();
-        driver.forward_tiles(-1.1);
+        driver.forward_tiles(1.1);
         sleep(1000);
         arm.setPosition(0.5);
         sleep(1000);
@@ -33,7 +33,7 @@ public class AutoSpecimenPark extends LinearOpMode
         sleep(1100);
         slide.setPower(0);
         sleep(1000);
-        driver.forward_tiles(-0.118);
+        driver.forward_tiles(0.118);
         sleep(1000);
         slide.setPower(1.0);
         sleep(100);
@@ -41,7 +41,7 @@ public class AutoSpecimenPark extends LinearOpMode
         sleep(500);
         claw.setPosition(0.0);
         sleep(500);
-        driver.forward_tiles(0.3);
+        driver.forward_tiles(-0.3);
         sleep(500);
         slide.setPower(1.0);
         sleep(500);

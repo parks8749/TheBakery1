@@ -26,15 +26,58 @@ public class AutoSpecimen extends LinearOpMode
         arm.setDirection(Servo.Direction.FORWARD);
 
         waitForStart();
-        driver.forward_tiles(-1.1);
-        sleep(1000);
+        driver.forward_tiles(0.9);
+        sleep(400);
         arm.setPosition(0.5);
-        sleep(1000);
+        sleep(300);
         slide.setPower(-1.0); // now this makes it go up for some reason
         sleep(1100);
         slide.setPower(0);
+        sleep(500);
+        driver.forward_tiles(0.2);
+        sleep(500);
+        slide.setPower(1.0);
+        sleep(100);
+        slide.setPower(0);
+        sleep(500);
+        claw.setPosition(0.0);
+        sleep(200);
+        driver.forward_tiles(-0.2);
+        sleep(500);
+        slide.setPower(1.0);
+        sleep(500);
+        arm.setPosition(1.0);
         sleep(1000);
-        driver.forward_tiles(-0.118);
+        //scored one on high bar
+        driver.turn_90_clockwise(1);
+        driver.forward_tiles(1.4);
+        driver.turn_90_clockwise(1);
+        driver.forward_tiles(0.93);
+        sleep(300);
+        claw.setPosition(0.6);
+        //grabs the specimen from human player
+        sleep(300);
+        arm.setPosition(0.5);
+        sleep(500);
+        slide.setPower(-1.0);
+        sleep(100);
+        slide.setPower(0.0);
+        driver.forward_tiles(-0.95);
+        slide.setPower(1.0);
+        sleep(100);
+        arm.setPosition(1.0);
+        sleep(500);
+        driver.turn_90_clockwise(1);
+        driver.forward_tiles(1.1);
+        driver.turn_90_clockwise(1);
+        sleep(500);
+        arm.setPosition(0.5);
+        sleep(500);
+        slide.setPower(-1.0);
+        sleep(1100);
+        slide.setPower(0);
+        sleep(1000);
+        driver.forward_tiles(0.2);
         sleep(1000);
         slide.setPower(1.0);
         sleep(100);
@@ -42,11 +85,12 @@ public class AutoSpecimen extends LinearOpMode
         sleep(500);
         claw.setPosition(0.0);
         sleep(500);
-        driver.forward_tiles(0.3);
+        driver.forward_tiles(-0.2);
         sleep(500);
         slide.setPower(1.0);
         sleep(500);
         arm.setPosition(1.0);
         sleep(1000);
+
     }
 }
