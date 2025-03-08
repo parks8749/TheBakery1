@@ -26,11 +26,12 @@ public class AutoSpecimen extends LinearOpMode
         arm.setDirection(Servo.Direction.FORWARD);
 
         waitForStart();
+        //start
         driver.forward_tiles(0.9);
         sleep(400);
         arm.setPosition(0.5);
         sleep(300);
-        slide.setPower(-1.0); // now this makes it go up for some reason
+        slide.setPower(-1.0);
         sleep(1100);
         slide.setPower(0);
         sleep(500);
@@ -40,7 +41,7 @@ public class AutoSpecimen extends LinearOpMode
         sleep(100);
         slide.setPower(0);
         sleep(500);
-        claw.setPosition(0.0);
+        claw.setPosition(0.15);
         sleep(200);
         driver.forward_tiles(-0.2);
         sleep(500);
@@ -50,11 +51,12 @@ public class AutoSpecimen extends LinearOpMode
         sleep(1000);
         //scored one on high bar
         driver.turn_90_clockwise(1);
-        driver.forward_tiles(1.4);
+        driver.forward_tiles(1.2);
         driver.turn_90_clockwise(1);
-        driver.forward_tiles(0.93);
+        driver.forward_tiles(0.94);
+        driver.strafe_tiles(0.35);
         sleep(300);
-        claw.setPosition(0.6);
+        claw.setPosition(0.45);
         //grabs the specimen from human player
         sleep(300);
         arm.setPosition(0.5);
@@ -62,13 +64,14 @@ public class AutoSpecimen extends LinearOpMode
         slide.setPower(-1.0);
         sleep(100);
         slide.setPower(0.0);
-        driver.forward_tiles(-0.95);
+        arm.setPosition(1.0);
+        driver.forward_tiles(-0.94);
         slide.setPower(1.0);
         sleep(100);
         arm.setPosition(1.0);
         sleep(500);
         driver.turn_90_clockwise(1);
-        driver.forward_tiles(1.1);
+        driver.forward_tiles(1.3);
         driver.turn_90_clockwise(1);
         sleep(500);
         arm.setPosition(0.5);

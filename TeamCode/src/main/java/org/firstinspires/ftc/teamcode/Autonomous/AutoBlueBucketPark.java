@@ -32,7 +32,6 @@ public class AutoBlueBucketPark extends LinearOpMode
         slide.setPower(-1.0);
         sleep(2400);
         slide.setPower(0);
-//        sleep(1000);
         scoop.setPosition(0.4);
         sleep(1000);
         scoop.setPosition(1.0);

@@ -106,7 +106,7 @@ public class Driver extends DriveTrain
     private void strafe_ticks(int ticks, double power) {
         int FR_target = super.MotorfR.getCurrentPosition() - ticks; // Front Right moves opposite
         int FL_target = super.MotorfL.getCurrentPosition() - ticks; // Front Left moves forward
-        int BR_target = super.MotorbR.getCurrentPosition() - ticks; // Back Right moves forward
+        int BR_target = super.MotorbR.getCurrentPosition() + ticks; // Back Right moves forward
         int BL_target = super.MotorbL.getCurrentPosition() + ticks; // Back Left moves opposite
 
         super.MotorfR.setTargetPosition(FR_target);

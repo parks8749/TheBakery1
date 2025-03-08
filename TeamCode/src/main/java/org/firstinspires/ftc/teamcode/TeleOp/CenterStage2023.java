@@ -23,8 +23,8 @@ public class CenterStage2023 extends LinearOpMode {
     private final double ARM_UP_POSITION = 0.5; // new value for new arm (down position)
     private DcMotor slide;
     private Servo claw;
-    private final double CLAW_OPEN_POSITION = 0.0;  // May adjust
-    private final double CLAW_CLOSED_POSITION = 0.6; // May adjust
+    private final double CLAW_OPEN_POSITION = 0.15;  // May adjust
+    private final double CLAW_CLOSED_POSITION = 0.45; // May adjust
 //    private boolean isClawOpen = true;
 //    private LinearSlides linearSlides;
 
