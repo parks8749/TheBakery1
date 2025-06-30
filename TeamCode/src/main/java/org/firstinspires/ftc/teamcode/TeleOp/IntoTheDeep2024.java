@@ -11,7 +11,6 @@ import org.firstinspires.ftc.teamcode.Core.DriveTrain;
 @TeleOp(name="IntoTheDeep2024", group="TeleOp")
 public class IntoTheDeep2024 extends LinearOpMode {
     private DriveTrain driveTrain;
-
     private Servo scoop;
     private final double SCOOP_DOWN_POSITION = 1.0;
     private final double SCOOP_UP_POSITION = 0.4;
@@ -24,7 +23,6 @@ public class IntoTheDeep2024 extends LinearOpMode {
     private final double CLAW_OPEN_POSITION = 0.15;  // May adjust
     private final double CLAW_CLOSED_POSITION = 0.45; // May adjust
 //    private boolean isClawOpen = true;
-//    private LinearSlides linearSlides;
 
 
 
@@ -90,8 +88,8 @@ public class IntoTheDeep2024 extends LinearOpMode {
 
             telemetry.addData("Claw Position", isClawOpen ? "Open" : "Closed");
             telemetry.update();
-
 // ARM CODE (B)
+
             boolean bPressed = gamepad2.b;
             arm.setDirection(Servo.Direction.FORWARD);
             if (bPressed && !bPreviouslyPressed) {
