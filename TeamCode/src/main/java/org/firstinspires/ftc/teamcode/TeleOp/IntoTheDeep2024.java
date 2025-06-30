@@ -4,14 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Core.DriveTrain;
-import org.firstinspires.ftc.teamcode.Core.LinearSlides;
 
 
-@TeleOp(name="CenterStage2023", group="TeleOp")
-public class CenterStage2023 extends LinearOpMode {
+@TeleOp(name="IntoTheDeep2024", group="TeleOp")
+public class IntoTheDeep2024 extends LinearOpMode {
     private DriveTrain driveTrain;
 
     private Servo scoop;
