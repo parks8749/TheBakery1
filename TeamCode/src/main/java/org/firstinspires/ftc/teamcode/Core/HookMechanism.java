@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Core;
 
 import androidx.annotation.NonNull;
 
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -90,7 +91,5 @@ public class HookMechanism
     {
         return hook.getPosition();
     }
-
-
 
 }

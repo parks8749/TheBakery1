@@ -16,6 +16,7 @@ public class IntoTheDeep2024 extends LinearOpMode {
     private Slide slide;
     private Turn  turn;
 
+
     @Override
     public void runOpMode() {
         // map hardware
@@ -27,6 +28,7 @@ public class IntoTheDeep2024 extends LinearOpMode {
         turn  = new Turn(hardwareMap.get(Servo.class, "turn"));
 
         // initialize
+
         arm.init();
         scoop.init();
         claw.init();
