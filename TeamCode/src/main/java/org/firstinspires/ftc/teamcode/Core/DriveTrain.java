@@ -283,7 +283,7 @@ public class DriveTrain
     }
     public boolean isBusy()
     {
-        return MotorfL.isBusy() && MotorbL.isBusy() && MotorfR.isBusy() && MotorbR.isBusy();
+        return MotorfL.isBusy() || MotorbL.isBusy() || MotorfR.isBusy() || MotorbR.isBusy();
     }
 
 }
