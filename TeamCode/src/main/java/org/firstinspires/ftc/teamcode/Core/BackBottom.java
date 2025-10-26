@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Core;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 
 public class BackBottom {
 
@@ -11,7 +13,7 @@ public class BackBottom {
     }
 
     public void init() {
-        backBottom.setDirection(CRServo.Direction.FORWARD);
+        backBottom.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void update(boolean aPressed) {

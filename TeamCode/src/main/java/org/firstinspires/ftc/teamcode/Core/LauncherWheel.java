@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Core;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 
 
 public class LauncherWheel {
@@ -12,7 +14,7 @@ public class LauncherWheel {
     }
 
     public void init() {
-        launcherWheel.setDirection(CRServo.Direction.FORWARD);
+        launcherWheel.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void update(boolean bPressed) {

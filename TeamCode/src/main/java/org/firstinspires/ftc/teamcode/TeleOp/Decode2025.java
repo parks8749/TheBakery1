@@ -18,18 +18,24 @@ public class Decode2025 extends LinearOpMode {
     public RightFlyWheel rightFlyWheel;
     public LeftFlyWheel leftFlyWheel;
 
+    private boolean leftFlyOn = false;
+    private boolean rightFlyOn = false;
+    private boolean prevLeftBumper = false;
+    private boolean prevRightBumper = false;
+
+    private static final float STICK_DEADZONE = 0.08f;
 
     @Override
     public void runOpMode() {
         // map hardware
-        driveTrain = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
-        backBottom = new BackBottom(hardwareMap.get(CRServo.class, "BackBottom"));
-        leftBelt = new LeftBelt(hardwareMap.get(CRServo.class, "LeftBelt"));
-        rightBelt = new RightBelt(hardwareMap.get(CRServo.class, "RightBelt"));
-        backIntake = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
-        frontIntake = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
-        launcherWheel = new LauncherWheel(hardwareMap.get(CRServo.class, "LauncherWheel"));
-        rightFlyWheel = new RightFlyWheel(hardwareMap.get(DcMotor.class, "RightFlyWheel"));
+        driveTrain   = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
+        backBottom   = new BackBottom(hardwareMap.get(CRServo.class, "BackBottom"));
+        leftBelt     = new LeftBelt(hardwareMap.get(CRServo.class, "LeftBelt"));
+        rightBelt    = new RightBelt(hardwareMap.get(CRServo.class, "RightBelt"));
+        backIntake   = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
+        frontIntake  = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
+        launcherWheel= new LauncherWheel(hardwareMap.get(CRServo.class, "LauncherWheel"));
+        rightFlyWheel= new RightFlyWheel(hardwareMap.get(DcMotor.class, "RightFlyWheel"));
         leftFlyWheel = new LeftFlyWheel(hardwareMap.get(DcMotor.class, "LeftFlyWheel"));
 
         // initialize
@@ -42,30 +48,44 @@ public class Decode2025 extends LinearOpMode {
         rightFlyWheel.init();
         leftFlyWheel.init();
 
-        telemetry.addData("Status","Initialized");
+        telemetry.addData("Status", "Initialized");
         telemetry.update();
         waitForStart();
 
         while (opModeIsActive()) {
-            // subsystem updates
             driveTrain.Drive(gamepad1);
-            rightBelt.update(gamepad1.y);
-            frontIntake.update(gamepad1.left_stick_y);
-            launcherWheel.update(gamepad1.b);
-            backIntake.update(gamepad1.right_stick_y);
-            backBottom.update(gamepad1.a);
-            leftBelt.update(gamepad1.x);
-            leftFlyWheel.update(gamepad1.left_bumper);
-            rightFlyWheel.update(gamepad1.right_bumper);
 
+            rightBelt.update(gamepad1.y);       // y pressed -> right belt on
+            launcherWheel.update(gamepad1.b);   // b pressed -> launcher on
+            backBottom.update(gamepad1.a);      // a pressed -> back bottom on
+            leftBelt.update(gamepad1.x);        // x pressed -> left belt on
 
-            // telemetry
-//            telemetry.addData("Claw",     claw.isOpen() ? "Open" : "Closed");
-//            telemetry.addData("Arm Pos",  arm.getPosition());
-//            telemetry.addData("Scoop Pos",scoop.getPosition());
-//            telemetry.addData("Slide Pos",slide.getPosition());
-//            telemetry.update();
+            float leftStick = applyDeadzone(gamepad1.left_stick_y, STICK_DEADZONE);
+            float rightStick = applyDeadzone(gamepad1.right_stick_y, STICK_DEADZONE);
+            frontIntake.update(leftStick);
+            backIntake.update(rightStick);
+
+            if (gamepad1.left_bumper && !prevLeftBumper) {
+                leftFlyOn = !leftFlyOn;
+            }
+            if (gamepad1.right_bumper && !prevRightBumper) {
+                rightFlyOn = !rightFlyOn;
+            }
+            prevLeftBumper = gamepad1.left_bumper;
+            prevRightBumper = gamepad1.right_bumper;
+
+            leftFlyWheel.update(leftFlyOn);
+            rightFlyWheel.update(rightFlyOn);
+
+            telemetry.addData("LeftFly", leftFlyOn ? "ON" : "OFF");
+            telemetry.addData("RightFly", rightFlyOn ? "ON" : "OFF");
+            telemetry.update();
+
+            sleep(10);
         }
     }
-}
 
+    private float applyDeadzone(float val, float dz) {
+        return Math.abs(val) < dz ? 0.0f : val;
+    }
+}

@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.Core;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+
 public class FrontIntake {
     
     private final CRServo frontIntake;
@@ -10,7 +13,7 @@ public class FrontIntake {
     }
 
     public void init() {
-        frontIntake.setDirection(CRServo.Direction.FORWARD);
+        frontIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void update(float leftStickY) {

@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Core;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 
 public class LeftBelt {
 
@@ -11,7 +13,7 @@ public class LeftBelt {
     }
 
     public void init() {
-        leftBelt.setDirection(CRServo.Direction.FORWARD);
+        leftBelt.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void update(boolean xPressed) {

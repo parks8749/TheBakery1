@@ -1,28 +1,23 @@
 package org.firstinspires.ftc.teamcode.Core;
 
-
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class RightFlyWheel {
-
     private final DcMotor rightFlyWheel;
+    private static final double POWER = 1.0;
 
-    public RightFlyWheel(DcMotor leftFlyWheel) {
-        this.rightFlyWheel = leftFlyWheel;
+    public RightFlyWheel(DcMotor rightFlyWheel) {
+        this.rightFlyWheel = rightFlyWheel;
     }
 
     public void init() {
-        rightFlyWheel.setDirection(CRServo.Direction.REVERSE);
+        rightFlyWheel.setDirection(DcMotorSimple.Direction.REVERSE);
         rightFlyWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightFlyWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     public void update(boolean rightBumperPressed) {
-        if (rightBumperPressed) {
-            rightFlyWheel.setPower(1.0);
-        } else {
-            rightFlyWheel.setPower(0.0);
-        }
+        rightFlyWheel.setPower(rightBumperPressed ? POWER : 0.0);
     }
 }
