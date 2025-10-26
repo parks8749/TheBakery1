@@ -15,12 +15,8 @@ public class Decode2025 extends LinearOpMode {
     public BackIntake backIntake;
     public FrontIntake frontIntake;
     public LauncherWheel launcherWheel;
-    public RightFlyWheel rightFlyWheel;
-    public LeftFlyWheel leftFlyWheel;
-
-    private boolean leftFlyOn = false;
-    private boolean rightFlyOn = false;
-    private boolean prevLeftBumper = false;
+    public FlyWheels flyWheels;
+    private boolean flyOn = false;
     private boolean prevRightBumper = false;
 
     private static final float STICK_DEADZONE = 0.08f;
@@ -35,8 +31,11 @@ public class Decode2025 extends LinearOpMode {
         backIntake   = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
         frontIntake  = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
         launcherWheel= new LauncherWheel(hardwareMap.get(CRServo.class, "LauncherWheel"));
-        rightFlyWheel= new RightFlyWheel(hardwareMap.get(DcMotor.class, "RightFlyWheel"));
-        leftFlyWheel = new LeftFlyWheel(hardwareMap.get(DcMotor.class, "LeftFlyWheel"));
+
+        flyWheels = new FlyWheels(
+                hardwareMap.get(DcMotor.class, "leftFly"),
+                hardwareMap.get(DcMotor.class, "rightFly")
+        );
 
         // initialize
         backBottom.init();
@@ -45,8 +44,7 @@ public class Decode2025 extends LinearOpMode {
         backIntake.init();
         frontIntake.init();
         launcherWheel.init();
-        rightFlyWheel.init();
-        leftFlyWheel.init();
+        flyWheels.init();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -55,30 +53,22 @@ public class Decode2025 extends LinearOpMode {
         while (opModeIsActive()) {
             driveTrain.Drive(gamepad1);
 
-            rightBelt.update(gamepad1.y);       // y pressed -> right belt on
-            launcherWheel.update(gamepad1.b);   // b pressed -> launcher on
-            backBottom.update(gamepad1.a);      // a pressed -> back bottom on
-            leftBelt.update(gamepad1.x);        // x pressed -> left belt on
+            rightBelt.update(gamepad2.y);
+            launcherWheel.update(gamepad2.b);
+            backBottom.update(gamepad2.a);
+            leftBelt.update(gamepad2.x);
 
-            float leftStick = applyDeadzone(gamepad1.left_stick_y, STICK_DEADZONE);
-            float rightStick = applyDeadzone(gamepad1.right_stick_y, STICK_DEADZONE);
+            float leftStick = applyDeadzone(gamepad2.left_stick_y, STICK_DEADZONE);
+            float rightStick = applyDeadzone(gamepad2.right_stick_y, STICK_DEADZONE);
             frontIntake.update(leftStick);
             backIntake.update(rightStick);
 
-            if (gamepad1.left_bumper && !prevLeftBumper) {
-                leftFlyOn = !leftFlyOn;
+            if (gamepad2.right_bumper && !prevRightBumper) {
+                flyOn = !flyOn;
             }
-            if (gamepad1.right_bumper && !prevRightBumper) {
-                rightFlyOn = !rightFlyOn;
-            }
-            prevLeftBumper = gamepad1.left_bumper;
-            prevRightBumper = gamepad1.right_bumper;
-
-            leftFlyWheel.update(leftFlyOn);
-            rightFlyWheel.update(rightFlyOn);
-
-            telemetry.addData("LeftFly", leftFlyOn ? "ON" : "OFF");
-            telemetry.addData("RightFly", rightFlyOn ? "ON" : "OFF");
+            prevRightBumper = gamepad2.right_bumper;
+            flyWheels.update(flyOn);
+            telemetry.addData("FlyWheels", flyOn ? "ON" : "OFF");
             telemetry.update();
 
             sleep(10);
