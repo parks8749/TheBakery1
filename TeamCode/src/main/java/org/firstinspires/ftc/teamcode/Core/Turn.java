@@ -19,7 +19,7 @@ public class Turn {
         } else if (leftStickY < 0) {
             turn.setPosition(1.0);
         } else {
-            // optionally: turn.setPosition(0.0);
+            turn.setPosition(0.0);
         }
     }
 }
