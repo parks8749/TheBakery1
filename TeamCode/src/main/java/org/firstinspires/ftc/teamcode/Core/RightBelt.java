@@ -12,7 +12,7 @@ public class RightBelt {
     }
 
     public void init() {
-        rightBelt.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightBelt.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void update(boolean yPressed) {

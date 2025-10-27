@@ -10,10 +10,10 @@ import org.firstinspires.ftc.teamcode.Core.*;
 public class Decode2025 extends LinearOpMode {
     public DriveTrain driveTrain;
     public BackBottom backBottom;
-    public LeftBelt leftBelt;
-    public RightBelt rightBelt;
+//    public LeftBelt leftBelt;
+//    public RightBelt rightBelt;
     public BackIntake backIntake;
-    public FrontIntake frontIntake;
+//    public FrontIntake frontIntake;
     public LauncherWheel launcherWheel;
     public FlyWheels flyWheels;
     private boolean flyOn = false;
@@ -25,11 +25,11 @@ public class Decode2025 extends LinearOpMode {
     public void runOpMode() {
         // map hardware
         driveTrain   = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
+//        rightBelt    = new RightBelt(hardwareMap.get(CRServo.class, "RightBelt"));
         backBottom   = new BackBottom(hardwareMap.get(CRServo.class, "BackBottom"));
-        leftBelt     = new LeftBelt(hardwareMap.get(CRServo.class, "LeftBelt"));
-        rightBelt    = new RightBelt(hardwareMap.get(CRServo.class, "RightBelt"));
+//        leftBelt     = new LeftBelt(hardwareMap.get(CRServo.class, "LeftBelt"));
         backIntake   = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
-        frontIntake  = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
+//        frontIntake  = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
         launcherWheel= new LauncherWheel(hardwareMap.get(CRServo.class, "LauncherWheel"));
 
         flyWheels = new FlyWheels(
@@ -38,11 +38,11 @@ public class Decode2025 extends LinearOpMode {
         );
 
         // initialize
+//        rightBelt.init();
         backBottom.init();
-        leftBelt.init();
-        rightBelt.init();
+//        leftBelt.init();
         backIntake.init();
-        frontIntake.init();
+//        frontIntake.init();
         launcherWheel.init();
         flyWheels.init();
 
@@ -53,15 +53,15 @@ public class Decode2025 extends LinearOpMode {
         while (opModeIsActive()) {
             driveTrain.Drive(gamepad1);
 
-            rightBelt.update(gamepad2.y);
+//            rightBelt.update(gamepad2.y);
             launcherWheel.update(gamepad2.b);
             backBottom.update(gamepad2.a);
-            leftBelt.update(gamepad2.x);
+//            leftBelt.update(gamepad2.x);
 
             float leftStick = applyDeadzone(gamepad2.left_stick_y, STICK_DEADZONE);
             float rightStick = applyDeadzone(gamepad2.right_stick_y, STICK_DEADZONE);
-            frontIntake.update(leftStick);
-            backIntake.update(rightStick);
+//            frontIntake.update(leftStick);
+            backIntake.update(leftStick);
 
             if (gamepad2.right_bumper && !prevRightBumper) {
                 flyOn = !flyOn;

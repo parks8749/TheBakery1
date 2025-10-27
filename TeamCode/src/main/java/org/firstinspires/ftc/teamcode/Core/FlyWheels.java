@@ -18,11 +18,11 @@ public class FlyWheels {
         if (leftFlyWheel == null || rightFlyWheel == null) {
             throw new IllegalStateException("Flywheel motors not initialized (null).");
         }
-        leftFlyWheel.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftFlyWheel.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFlyWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftFlyWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
-        rightFlyWheel.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFlyWheel.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFlyWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFlyWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }

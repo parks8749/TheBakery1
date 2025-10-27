@@ -7,20 +7,36 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class BackBottom {
 
     private final CRServo backBottom;
+    private static final double POWER = 1.0;
+    private boolean toggled = false;
+    private boolean lastAPressed = false;
 
     public BackBottom(CRServo backRoller) {
         this.backBottom = backRoller;
     }
 
     public void init() {
-        backBottom.setDirection(DcMotorSimple.Direction.FORWARD);
+        backBottom.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void update(boolean aPressed) {
-        if (aPressed) {
-            backBottom.setPower(-1.0);
-        } else {
-            backBottom.setPower(0.0);
+        if (aPressed && !lastAPressed) {
+            toggled = !toggled;
         }
+        lastAPressed = aPressed;
+
+        // set power based on toggled state
+        backBottom.setPower(toggled ? POWER : 0.0);
+//        double p = aPressed ? POWER : 0.0;
+//        backBottom.setPower(p);
+//        if (aPressed) {
+//            backBottom.setPower(-1.0);
+//        } else {
+//            backBottom.setPower(0.0);
+//        }
+    }
+    public void stop() {
+        toggled = false;
+        backBottom.setPower(0.0);
     }
 }

@@ -16,11 +16,11 @@ public class BackIntake {
         backIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
-    public void update(float rightStickY) {
-        if (Math.abs(rightStickY) < DEADZONE) {
+    public void update(float leftStickY) {
+        if (Math.abs(leftStickY) < DEADZONE) {
             backIntake.setPower(0.0);
             return;
         }
-        backIntake.setPower(rightStickY > 0 ? -POWER : POWER);
+        backIntake.setPower(leftStickY > 0 ? -POWER : POWER);
     }
 }

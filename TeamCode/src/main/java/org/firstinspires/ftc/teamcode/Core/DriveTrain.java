@@ -175,10 +175,10 @@ public class DriveTrain
     public void DirectForward(double speed)
     {
         System.out.println("Driving");
-        setPowerFR(speed);
-        setPowerFL(-speed);
-        setPowerBL(-speed);
-        setPowerBR(speed);
+        setPowerFR(-speed);
+        setPowerFL(speed);
+        setPowerBL(speed);
+        setPowerBR(-speed);
     }
 
     /**
@@ -189,10 +189,10 @@ public class DriveTrain
     public void DirectTurn(double speed)
     {
         System.out.println("Turning");
-        setPowerFR(speed);
-        setPowerFL(speed);
-        setPowerBL(speed);
-        setPowerBR(speed);
+        setPowerFR(-speed);
+        setPowerFL(-speed);
+        setPowerBL(-speed);
+        setPowerBR(-speed);
     }
 
     /**
@@ -203,10 +203,10 @@ public class DriveTrain
     protected void DirectStrafe(double speed)
     {
         System.out.println("Strafing");
-        setPowerFR(-speed);
-        setPowerFL(-speed);
-        setPowerBL(speed);
-        setPowerBR(speed);
+        setPowerFR(speed);
+        setPowerFL(speed);
+        setPowerBL(-speed);
+        setPowerBR(-speed);
     }
 
     /**
