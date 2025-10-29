@@ -16,6 +16,7 @@ public class Decode2025 extends LinearOpMode {
 //    public FrontIntake frontIntake;
     public LauncherWheel launcherWheel;
     public FlyWheels flyWheels;
+    public Belts belts;
     private boolean flyOn = false;
     private boolean prevRightBumper = false;
 
@@ -36,6 +37,10 @@ public class Decode2025 extends LinearOpMode {
                 hardwareMap.get(DcMotor.class, "leftFly"),
                 hardwareMap.get(DcMotor.class, "rightFly")
         );
+        belts = new Belts(
+                hardwareMap.get(CRServo.class, "LeftBelt"),
+                hardwareMap.get(CRServo.class, "RightBelt")
+        );
 
         // initialize
 //        rightBelt.init();
@@ -45,6 +50,7 @@ public class Decode2025 extends LinearOpMode {
 //        frontIntake.init();
         launcherWheel.init();
         flyWheels.init();
+        belts.init();
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -58,10 +64,12 @@ public class Decode2025 extends LinearOpMode {
             backBottom.update(gamepad2.a);
 //            leftBelt.update(gamepad2.x);
 
+
             float leftStick = applyDeadzone(gamepad2.left_stick_y, STICK_DEADZONE);
             float rightStick = applyDeadzone(gamepad2.right_stick_y, STICK_DEADZONE);
 //            frontIntake.update(leftStick);
             backIntake.update(leftStick);
+            belts.update(rightStick);
 
             if (gamepad2.right_bumper && !prevRightBumper) {
                 flyOn = !flyOn;
