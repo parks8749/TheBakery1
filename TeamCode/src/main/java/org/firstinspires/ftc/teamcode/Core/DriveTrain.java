@@ -90,13 +90,13 @@ public class DriveTrain
      */
     protected void Forward(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 0.8, 1);
+        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1);
         DirectForward(speed * speedMod);
     }
 
     protected void Strafe(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 0.8, 1);
+        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1);
         DirectStrafe(speed * speedMod);
     }
 
@@ -108,7 +108,7 @@ public class DriveTrain
      */
     public void Turn(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.3, 0.8, 1);
+        double speedMod = calculateSpeedModifier(gamepad, 0.3, 1.0, 1);
         DirectTurn(speed * speedMod);
     }
 

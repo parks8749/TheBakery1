@@ -10,15 +10,10 @@ import org.firstinspires.ftc.teamcode.Core.*;
 public class Decode2025 extends LinearOpMode {
     public DriveTrain driveTrain;
     public BackBottom backBottom;
-//    public LeftBelt leftBelt;
-//    public RightBelt rightBelt;
     public BackIntake backIntake;
-//    public FrontIntake frontIntake;
     public LauncherWheel launcherWheel;
     public FlyWheels flyWheels;
     public Belts belts;
-    private boolean flyOn = false;
-    private boolean prevRightBumper = false;
 
     private static final float STICK_DEADZONE = 0.08f;
 
@@ -26,11 +21,8 @@ public class Decode2025 extends LinearOpMode {
     public void runOpMode() {
         // map hardware
         driveTrain   = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
-//        rightBelt    = new RightBelt(hardwareMap.get(CRServo.class, "RightBelt"));
         backBottom   = new BackBottom(hardwareMap.get(CRServo.class, "BackBottom"));
-//        leftBelt     = new LeftBelt(hardwareMap.get(CRServo.class, "LeftBelt"));
         backIntake   = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
-//        frontIntake  = new FrontIntake(hardwareMap.get(CRServo.class, "FrontIntake"));
         launcherWheel= new LauncherWheel(hardwareMap.get(CRServo.class, "LauncherWheel"));
 
         flyWheels = new FlyWheels(
@@ -43,11 +35,8 @@ public class Decode2025 extends LinearOpMode {
         );
 
         // initialize
-//        rightBelt.init();
         backBottom.init();
-//        leftBelt.init();
         backIntake.init();
-//        frontIntake.init();
         launcherWheel.init();
         flyWheels.init();
         belts.init();
@@ -59,24 +48,16 @@ public class Decode2025 extends LinearOpMode {
         while (opModeIsActive()) {
             driveTrain.Drive(gamepad1);
 
-//            rightBelt.update(gamepad2.y);
             launcherWheel.update(gamepad2.b);
             backBottom.update(gamepad2.a);
-//            leftBelt.update(gamepad2.x);
-
 
             float leftStick = applyDeadzone(gamepad2.left_stick_y, STICK_DEADZONE);
             float rightStick = applyDeadzone(gamepad2.right_stick_y, STICK_DEADZONE);
-//            frontIntake.update(leftStick);
             backIntake.update(leftStick);
             belts.update(rightStick);
 
-            if (gamepad2.right_bumper && !prevRightBumper) {
-                flyOn = !flyOn;
-            }
-            prevRightBumper = gamepad2.right_bumper;
-            flyWheels.update(flyOn);
-            telemetry.addData("FlyWheels", flyOn ? "ON" : "OFF");
+            flyWheels.update(gamepad2.right_bumper, gamepad2.left_bumper);
+
             telemetry.update();
 
             sleep(10);
