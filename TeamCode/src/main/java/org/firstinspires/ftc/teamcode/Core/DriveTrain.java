@@ -57,9 +57,9 @@ public class DriveTrain
      */
     public void Drive(Gamepad gamepad)
     {
-        Turn(gamepad, gamepad.right_stick_x);
+        Turn(gamepad, gamepad.left_stick_x);
         Forward(gamepad, gamepad.left_stick_y);
-        Strafe(gamepad, gamepad.left_stick_x);
+        Strafe(gamepad, gamepad.right_stick_x);
     }
 
     /**
