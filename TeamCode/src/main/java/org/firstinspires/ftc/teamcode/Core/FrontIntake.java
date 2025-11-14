@@ -18,9 +18,9 @@ public class FrontIntake {
 
     public void update(float leftStickY) {
         if (leftStickY > 0) {
-            frontIntake.setPower(-1.0);
-        } else if (leftStickY < 0) {
             frontIntake.setPower(1.0);
+        } else if (leftStickY < 0) {
+            frontIntake.setPower(-1.0);
         } else {
             frontIntake.setPower(0.0);
         }
