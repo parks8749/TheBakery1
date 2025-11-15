@@ -8,6 +8,55 @@ public class BackBottom {
 
     private final CRServo backBottom;
     private static final double POWER = 1.0;
+    private boolean directionForward = true;
+    private boolean lastAPressed = false;
+
+    public BackBottom(CRServo backRoller) {
+        this.backBottom = backRoller;
+    }
+
+    public void init() {
+        backBottom.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    public void update(boolean aPressed) {
+        if (aPressed && !lastAPressed) {
+            directionForward = !directionForward;
+        }
+        lastAPressed = aPressed;
+
+        if (directionForward) {
+            backBottom.setPower(POWER);   // forward
+        } else {
+            backBottom.setPower(-POWER);  // reverse
+        }
+    }
+
+    public void stop() {
+        backBottom.setPower(0.0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*package org.firstinspires.ftc.teamcode.Core;
+
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+
+public class BackBottom {
+
+    private final CRServo backBottom;
+    private static final double POWER = 1.0;
     private boolean toggled = false;
     private boolean lastAPressed = false;
 
@@ -40,3 +89,4 @@ public class BackBottom {
         backBottom.setPower(0.0);
     }
 }
+*/
