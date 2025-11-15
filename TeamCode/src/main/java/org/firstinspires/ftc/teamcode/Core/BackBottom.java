@@ -3,12 +3,13 @@ package org.firstinspires.ftc.teamcode.Core;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-
 public class BackBottom {
 
     private final CRServo backBottom;
     private static final double POWER = 1.0;
+
     private boolean directionForward = true;
+    private boolean running = false;
     private boolean lastAPressed = false;
 
     public BackBottom(CRServo backRoller) {
@@ -17,22 +18,35 @@ public class BackBottom {
 
     public void init() {
         backBottom.setDirection(DcMotorSimple.Direction.REVERSE);
+        backBottom.setPower(0);
     }
 
     public void update(boolean aPressed) {
+
+
         if (aPressed && !lastAPressed) {
-            directionForward = !directionForward;
+
+            if (!running) {
+
+                running = true;
+            } else {
+
+                directionForward = !directionForward;
+            }
         }
+
         lastAPressed = aPressed;
 
-        if (directionForward) {
-            backBottom.setPower(POWER);   // forward
+
+        if (running) {
+            backBottom.setPower(directionForward ? POWER : -POWER);
         } else {
-            backBottom.setPower(-POWER);  // reverse
+            backBottom.setPower(0);
         }
     }
 
     public void stop() {
+        running = false;
         backBottom.setPower(0.0);
     }
 }
