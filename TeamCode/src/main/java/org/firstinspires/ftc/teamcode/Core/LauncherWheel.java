@@ -19,12 +19,24 @@ public class LauncherWheel {
         launcherWheel.setPower(0.0);
     }
 
-    public void update(boolean bPressed) {
-        if (bPressed && !lastBPressed) {
+    public void update(boolean bPressed, boolean xPressed) {
+        boolean rising = bPressed && !lastBPressed;
+        lastBPressed = bPressed;
+
+        if (xPressed) {
+            // might need to change power
+            launcherWheel.setPower(-0.7);
+            return;
+        }
+
+        if (rising) {
             toggled = !toggled;
         }
-        lastBPressed = bPressed;
         launcherWheel.setPower(toggled ? POWER : 0.0);
+    }
+
+    public void setPowerDirect(double power) {
+        launcherWheel.setPower(power);
     }
 
     public void stop() {

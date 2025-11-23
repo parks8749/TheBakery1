@@ -16,11 +16,25 @@ public class BackIntake {
         backIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
-    public void update(float leftStickY) {
+    public void update(float leftStickY, boolean xPressed) {
+        if (xPressed) {
+            // might need to change power
+            backIntake.setPower(0.7);
+            return;
+        }
+
         if (Math.abs(leftStickY) < DEADZONE) {
             backIntake.setPower(0.0);
             return;
         }
         backIntake.setPower(leftStickY > 0 ? -POWER : POWER);
+    }
+
+    public void setPower(double power) {
+        backIntake.setPower(power);
+    }
+
+    public void stop() {
+        backIntake.setPower(0.0);
     }
 }

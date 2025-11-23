@@ -35,12 +35,19 @@ public class FlyWheels {
         applyPower();
     }
 
-    public void update(boolean leftPressed, boolean rightPressed) {
+    public void update(boolean leftPressed, boolean rightPressed, boolean xPressed) {
         boolean leftRising = leftPressed && !prevLeftPressed;
         boolean rightRising = rightPressed && !prevRightPressed;
 
         prevLeftPressed = leftPressed;
         prevRightPressed = rightPressed;
+
+        if (xPressed) {
+            // might need to adjust power
+            leftFlyWheel.setPower(-0.7);
+            rightFlyWheel.setPower(-0.7);
+            return;
+        }
 
         if (leftRising && rightRising) {
             state = State.STOPPED;
@@ -69,4 +76,6 @@ public class FlyWheels {
         applyPower();
     }
 
+    public void setReverse() { state = State.REVERSE; applyPower(); }
+    public void setForward() { state = State.FORWARD; applyPower(); }
 }

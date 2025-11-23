@@ -101,7 +101,6 @@ public class Decode2025 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        // map hardware
         driveTrain   = new DriveTrain(hardwareMap, "fL", "bL", "fR", "bR");
         backBottom   = new BackBottom(hardwareMap.get(CRServo.class, "BackBottom"));
         backIntake   = new BackIntake(hardwareMap.get(CRServo.class, "BackIntake"));
@@ -118,7 +117,6 @@ public class Decode2025 extends LinearOpMode {
                 hardwareMap.get(CRServo.class, "RightBelt")
         );
 
-        // initialize subsystems
         backBottom.init();
         backIntake.init();
         launcherWheel.init();
@@ -134,27 +132,24 @@ public class Decode2025 extends LinearOpMode {
 
         while (opModeIsActive()) {
             driveTrain.Drive(gamepad1);
-
-            launcherWheel.update(gamepad2.b);
-//            backBottom.update(gamepad2.a);
-
             float leftStick = applyDeadzone(gamepad2.left_stick_y, STICK_DEADZONE);
             float rightStick = applyDeadzone(gamepad2.right_stick_y, STICK_DEADZONE);
-            backIntake.update(leftStick);
+            boolean xPressed = gamepad2.x;
+            launcherWheel.update(gamepad2.b, xPressed);
             backBottom.update(belts.getMode(), gamepad2.left_stick_y);
-//            belts.update(gamepad2.x);
+
+            backIntake.update(leftStick, xPressed);
             belts.update(rightStick);
             frontIntake.update(belts.getMode());
-//            frontIntake.update(rightStick);
-//            topFront.update(gamepad2.y);
             topFront.update(belts.getMode());
+            flyWheels.update(gamepad2.right_bumper, gamepad2.left_bumper, xPressed);
 
-            flyWheels.update(gamepad2.right_bumper, gamepad2.left_bumper);
-
+            telemetry.addData("Override X", xPressed);
             telemetry.update();
 
             sleep(10);
         }
+
     }
 
     private float applyDeadzone(float val, float dz) {
