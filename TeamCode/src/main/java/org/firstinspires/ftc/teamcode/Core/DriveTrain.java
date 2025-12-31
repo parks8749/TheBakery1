@@ -291,8 +291,6 @@
 
 
 
-
-
 package org.firstinspires.ftc.teamcode.Core;
 
 import androidx.annotation.NonNull;
@@ -311,7 +309,6 @@ public class DriveTrain
     public DcMotor MotorfR, MotorbR;
 
     // Direction modifiers (1 or -1) in case a motor needs reversing for power calls
-    protected final int MOTOR_fL_MODIFIER = 1, MOTOR_bL_MODIFIER = 1, MOTOR_fR_MODIFIER = 1, MOTOR_bR_MODIFIER = 1;
 
     protected boolean encoders_initialized = false;
 
@@ -347,13 +344,11 @@ public class DriveTrain
         double strafe  =  gamepad.right_stick_x; // right positive
 
         // deadzone
-        final double DZ = 0.08;
         forward = Math.abs(forward) < DZ ? 0.0 : forward;
         turn    = Math.abs(turn)    < DZ ? 0.0 : turn;
         strafe  = Math.abs(strafe)  < DZ ? 0.0 : strafe;
 
         // global speed modifier (use right bumper for fast, 'b' for slow)
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1.0);
 
         // mecanum mix (consistent with Direct* helpers)
         double fl = forward + strafe + turn;
@@ -386,19 +381,16 @@ public class DriveTrain
 
     protected void Forward(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1.0);
         DirectForward(speed * speedMod);
     }
 
     protected void Strafe(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1.0);
         DirectStrafe(speed * speedMod);
     }
 
     public void Turn(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.3, 1.0, 1.0);
         DirectTurn(speed * speedMod);
     }
 
@@ -439,16 +431,12 @@ public class DriveTrain
     {
         // Note: signs chosen to match your previous logic. Adjust if your wiring differs.
         setPowerFR(speed); //-
-        setPowerFL(-speed); //+
-        setPowerBL(-speed); //+
         setPowerBR(speed); //-
     }
 
     public void DirectTurn(double speed)
     {
         setPowerFR(-speed);
-        setPowerFL(-speed);
-        setPowerBL(-speed);
         setPowerBR(-speed);
     }
 
@@ -456,8 +444,6 @@ public class DriveTrain
     {
         // matches your previously provided mapping
         setPowerFR(-speed); //+
-        setPowerFL(-speed); //+
-        setPowerBL(speed); //-
         setPowerBR(speed); //-
     }
 

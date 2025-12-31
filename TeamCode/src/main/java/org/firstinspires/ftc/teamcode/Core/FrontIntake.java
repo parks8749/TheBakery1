@@ -3,9 +3,14 @@ package org.firstinspires.ftc.teamcode.Core;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+<<<<<<< HEAD
 
 public class FrontIntake {
     
+=======
+public class FrontIntake {
+
+>>>>>>> local-save
     private final CRServo frontIntake;
 
     public FrontIntake(CRServo frontIntake) {
@@ -16,13 +21,33 @@ public class FrontIntake {
         frontIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
+<<<<<<< HEAD
     public void update(float leftStickY) {
         if (leftStickY > 0) {
             frontIntake.setPower(1.0);
         } else if (leftStickY < 0) {
+=======
+    /**
+     * Mirrors belts mode:
+     * mode == 1 -> power = +1.0
+     * mode == 2 -> power = -1.0
+     * mode == 0 -> power = 0.0
+     */
+    public void update(int beltsMode) {
+        if (beltsMode == 1) {
+            frontIntake.setPower(1.0);
+        } else if (beltsMode == 2) {
+>>>>>>> local-save
             frontIntake.setPower(-1.0);
         } else {
             frontIntake.setPower(0.0);
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void stop() {
+        frontIntake.setPower(0.0);
+    }
+>>>>>>> local-save
 }

@@ -16,7 +16,6 @@ public class BackIntake {
         backIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
-    public void update(float leftStickY) {
         if (Math.abs(leftStickY) < DEADZONE) {
             backIntake.setPower(0.0);
             return;

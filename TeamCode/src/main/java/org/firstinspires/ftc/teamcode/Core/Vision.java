@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 //package org.firstinspires.ftc.teamcode.Core;
+=======
+package org.firstinspires.ftc.teamcode.Core;//package org.firstinspires.ftc.teamcode.Core;
+>>>>>>> local-save
 //
 //
 //import com.qualcomm.robotcore.hardware.HardwareMap;
