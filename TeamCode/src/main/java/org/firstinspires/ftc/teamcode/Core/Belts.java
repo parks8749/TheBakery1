@@ -7,17 +7,10 @@ public class Belts {
 
     private final CRServo leftBelt;
     private final CRServo rightBelt;
-<<<<<<< HEAD
-    private static final float DEADZONE = 0.08f;
-    private static final double POWER = 1.0;
-    private boolean toggled = false;
-    private boolean lastBPressed = false;
-=======
     private static final double POWER = 1.0;
 
     // 0 = off, 1 = forward, 2 = reverse
     private int mode = 0;
->>>>>>> local-save
 
     public Belts(CRServo leftBelt, CRServo rightBelt) {
         this.leftBelt = leftBelt;
@@ -27,35 +20,6 @@ public class Belts {
     public void init() {
         leftBelt.setDirection(DcMotorSimple.Direction.FORWARD);
         rightBelt.setDirection(DcMotorSimple.Direction.FORWARD);
-<<<<<<< HEAD
-    }
-
-    public void update(boolean xPressed) {
-        if (xPressed && !lastBPressed) {
-            toggled = !toggled;
-        }
-        lastBPressed = xPressed;
-        rightBelt.setPower(toggled ? POWER : 0.0);
-    }
-
-    public void stop() {
-        toggled = false;
-        rightBelt.setPower(0.0);
-    }
-
-
-//        if (Math.abs(rightStickY) < DEADZONE) {
-//            rightBelt.setPower(0.0);
-//            leftBelt.setPower(0.0);
-//            return;
-//        }
-//        rightBelt.setPower(rightStickY > 0 ? POWER : -POWER);
-//        leftBelt.setPower(rightStickY > 0 ? -POWER : POWER);
-
-
-
-=======
-        applyMode();
     }
 
     /**
@@ -72,10 +36,7 @@ public class Belts {
         } else {
             mode = 0;
         }
-        applyMode();
-    }
 
-    private void applyMode() {
         switch (mode) {
             case 0: // off
                 rightBelt.setPower(0.0);
@@ -94,7 +55,8 @@ public class Belts {
 
     public void stop() {
         mode = 0;
-        applyMode();
+        rightBelt.setPower(0.0);
+        leftBelt.setPower(0.0);
     }
 
     public int getMode() {
@@ -104,14 +66,4 @@ public class Belts {
     public boolean isRunning() {
         return mode != 0;
     }
-
-    /**
-     * Directly force the belts into a mode (0/1/2) from code.
-     * Useful for global overrides/automations.
-     */
-    public void setMode(int newMode) {
-        this.mode = newMode;
-        applyMode();
-    }
->>>>>>> local-save
 }
