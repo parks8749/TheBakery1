@@ -349,13 +349,13 @@ public class DriveTrain
         double strafe  =  gamepad.right_stick_x; // right positive
 
         // deadzone
-        final double DZ = 0.08;
+        final double DZ = 0.45; //0.08
         forward = Math.abs(forward) < DZ ? 0.0 : forward;
         turn    = Math.abs(turn)    < DZ ? 0.0 : turn;
         strafe  = Math.abs(strafe)  < DZ ? 0.0 : strafe;
 
         // global speed modifier (use right bumper for fast, 'b' for slow)
-        double speedMod = calculateSpeedModifier(gamepad, 0.2, 1.0, 1.0);
+        double speedMod = calculateSpeedModifier(gamepad, 0.5, 1.0, 1.0);
 
         // mecanum mix (consistent with Direct* helpers)
         double fl = forward + strafe + turn;
@@ -388,19 +388,19 @@ public class DriveTrain
 
     protected void Forward(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.6, 1.0, 1.0);
+        double speedMod = calculateSpeedModifier(gamepad, 0.5, 1.0, 1.0);
         DirectForward(speed * speedMod);
     }
 
     protected void Strafe(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.6, 1.0, 1.0);
+        double speedMod = calculateSpeedModifier(gamepad, 0.5, 1.0, 1.0);
         DirectStrafe(speed * speedMod);
     }
 
     public void Turn(Gamepad gamepad, float speed)
     {
-        double speedMod = calculateSpeedModifier(gamepad, 0.6, 1.0, 1.0);
+        double speedMod = calculateSpeedModifier(gamepad, 0.5, 1.0, 1.0);
         DirectTurn(speed * speedMod);
     }
 

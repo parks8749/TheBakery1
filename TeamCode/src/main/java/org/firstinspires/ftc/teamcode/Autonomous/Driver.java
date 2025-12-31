@@ -265,7 +265,7 @@ public class Driver extends DriveTrain
     private final double distance_per_motor_rotation = wheel_diameter * Math.PI; // mm per motor rotation
 
     /** Default timeout for any move (ms) */
-    private static final long DEFAULT_MOVE_TIMEOUT_MS = 5000;
+    private static final long DEFAULT_MOVE_TIMEOUT_MS = 1500; // changes the auto rest time between driving
 
     /**
      * Constructor now accepts LinearOpMode to allow opMode checks and telemetry inside wait loops.
@@ -296,21 +296,16 @@ public class Driver extends DriveTrain
 
         while (opMode.opModeIsActive() && super.isBusy() && timer.milliseconds() < timeoutMs)
         {
-            // Helpful telemetry for debugging during autonomous
             opMode.telemetry.addData("FL", getMotorFLPosition());
             opMode.telemetry.addData("FR", getMotorFRPosition());
             opMode.telemetry.addData("BL", getMotorBLPosition());
             opMode.telemetry.addData("BR", getMotorBRPosition());
             opMode.telemetry.update();
-
-            // Let the system breathe and allow other tasks to run
             opMode.idle();
         }
 
-        // Stop motors to ensure a clean end state
         super.Stop();
 
-        // After a RUN_TO_POSITION operation, switch to RUN_USING_ENCODER so encoders remain active
         super.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
@@ -339,7 +334,6 @@ public class Driver extends DriveTrain
 
     public void forward_distance(double distanceMm, double power)
     {
-        // distance passed in mm (consistent with wheel_diameter mm)
         int ticks = (int) (distanceMm * encoderResolution / distance_per_motor_rotation);
         forward_ticks(ticks, power);
     }
@@ -424,40 +418,4 @@ public class Driver extends DriveTrain
         turn_90_intervals(-times);
     }
 
-    // Simple parking routines (unchanged)
-    public void parkEasyBlue()
-    {
-        forward_tiles(1.45);
-        turn_90_clockwise(1);
-        forward_tiles(1);
-        turn_90_counter_clockwise(1);
-    }
-
-    public void parkEasyRed()
-    {
-        forward_tiles(1.45);
-        turn_90_counter_clockwise(1);
-        forward_tiles(1);
-        turn_90_clockwise(1);
-    }
-
-    public void parkHardBlue()
-    {
-        forward_tiles(2.2, 0.55);
-        turn_90_counter_clockwise(1);
-        forward_tiles(3.5, 0.55);
-        turn_90_counter_clockwise(1);
-        forward_tiles(0.8);
-        turn_90_clockwise(1);
-    }
-
-    public void parkHardRed()
-    {
-        forward_tiles(2.2, 0.55);
-        turn_90_clockwise(1);
-        forward_tiles(3.45, 0.55);
-        turn_90_clockwise(1);
-        forward_tiles(0.85);
-        turn_90_counter_clockwise(1);
-    }
 }

@@ -35,7 +35,13 @@ public class FlyWheels {
         applyPower();
     }
 
-    public void update(boolean leftPressed, boolean rightPressed, boolean xPressed) {
+    /**
+     * @param leftPressed bumper toggles forward (existing)
+     * @param rightPressed bumper toggles reverse (existing)
+     * @param xPressed existing override -> reverse at -0.7
+     * @param overrideActive new global activation (gamepad2.y) -> run forward at full POWER
+     */
+    public void update(boolean leftPressed, boolean rightPressed, boolean xPressed, boolean overrideActive) {
         boolean leftRising = leftPressed && !prevLeftPressed;
         boolean rightRising = rightPressed && !prevRightPressed;
 
@@ -43,9 +49,16 @@ public class FlyWheels {
         prevRightPressed = rightPressed;
 
         if (xPressed) {
-            // might need to adjust power
+            // existing override: reverse moderate power
             leftFlyWheel.setPower(-0.7);
             rightFlyWheel.setPower(-0.7);
+            return;
+        }
+
+        if (overrideActive) {
+            // global activation -> run both flywheels forward at full power
+            leftFlyWheel.setPower(POWER);
+            rightFlyWheel.setPower(POWER);
             return;
         }
 

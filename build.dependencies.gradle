@@ -1,7 +1,10 @@
 repositories {
+    google()
     mavenCentral()
-    google() // Needed for androidx
+    maven { url 'https://maven.brott.dev/' }
+    maven { url 'https://jitpack.io' }
 }
+
 
 dependencies {
     implementation 'org.firstinspires.ftc:Inspection:11.0.0'

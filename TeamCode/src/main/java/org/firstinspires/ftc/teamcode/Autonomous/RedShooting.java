@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-@Autonomous(name="RedShootingGPP", group="Autonomous")
-public class RedShootingGPP extends LinearOpMode
+@Autonomous(name="RedShooting", group="Autonomous")
+public class RedShooting extends LinearOpMode
 {
     Driver driver;
     public CRServo backBottom;
@@ -14,8 +14,8 @@ public class RedShootingGPP extends LinearOpMode
     public CRServo launcherWheel;
     public DcMotor leftFlyWheel;
     public DcMotor rightFlyWheel;
-    public CRServo rightBelt;
     public CRServo leftBelt;
+    public CRServo rightBelt;
     public CRServo frontIntake;
 
 
@@ -41,13 +41,13 @@ public class RedShootingGPP extends LinearOpMode
         if (opModeIsActive())
         {
             // this section puts the robot in position to shoot the 2 artifacts in the back intake
-            driver.forward_tiles(-0.6); // -0.75
+            driver.forward_tiles(-0.75);
             backIntake.setPower(-1.0);
             backBottom.setPower(-1.0);
             launcherWheel.setPower(1.0);
             leftFlyWheel.setPower(-1.0);
             rightFlyWheel.setPower(1.0);
-            sleep(4000);
+            sleep(3000);
 //-------------------------------------------------------------------------------
             // this section turns on all the things needed to shoot the artifact in front intake
             rightBelt.setPower(1.0);
@@ -57,7 +57,7 @@ public class RedShootingGPP extends LinearOpMode
             backIntake.setPower(-1.0);
             leftFlyWheel.setPower(-1.0);
             rightFlyWheel.setPower(1.0);
-            sleep(4000);
+            sleep(5000);
 //--------------------------------------------------------------------------------------------------
             // this section turns off all the parts to ensure nothing else happens that might give us penalty
             rightBelt.setPower(0);
@@ -68,39 +68,10 @@ public class RedShootingGPP extends LinearOpMode
             leftFlyWheel.setPower(0.0);
             rightFlyWheel.setPower(0.0);
 //--------------------------------------------------------------------------------------------------
-            // drives robot to take in the first row of artifacts (GPP)
-            driver.forward_tiles(-0.5);
-            driver.turn_ticks(420,1);
-            driver.strafe_tiles(-3.1,1);
-            frontIntake.setPower(1.0);
-            rightBelt.setPower(1.0);
-            leftBelt.setPower(-1.0);
-            launcherWheel.setPower(1.0);
-            backIntake.setPower(-1.0);
-//            driver.forward_tiles(3, 0.2);
-            sleep(500);
-            driver.forward_tiles(2.5);
-            sleep(500);
-//--------------------------------------------------------------------------------------------------
-            // backs up and gets in position to shoot in goal
-            driver.forward_tiles(-1.35);
-            driver.strafe_tiles(4.1,1);
-            driver.turn_ticks(-460,1);
-            driver.forward_tiles(0.4,1);
-            backBottom.setPower(1.0);
-            leftFlyWheel.setPower(-1.0);
-            rightFlyWheel.setPower(1.0);
-            sleep(4000);
-//--------------------------------------------------------------------------------------------------
-            // stops all motor and get out of launch zone to get leave points
-            rightBelt.setPower(0);
-            leftBelt.setPower(0);
-            backBottom.setPower(0);
-            launcherWheel.setPower(0);
-            backIntake.setPower(0);
-            leftFlyWheel.setPower(0.0);
-            rightFlyWheel.setPower(0.0);
-            driver.strafe_tiles(-1,1);
+            // this section moves the robot out of the launch zone to get move points
+            driver.turn_ticks(390,1);
+            driver.forward_tiles(0.7,1.0);
+            driver.strafe_tiles(-0.5,1.0);
         }
 
     }
